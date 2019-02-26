@@ -1,5 +1,7 @@
 <?php
 
+namespace PHPUnitDemo\Services;
+
 /**
  * Class CsvWriterService
  */
@@ -18,6 +20,7 @@ class CsvWriterService
     public function __construct($filePath)
     {
         $this->file = fopen($filePath, 'w');
+        fputcsv($this->$this->file, 'Month Name, Salary Date, Bonus Date');
     }
 
     /**

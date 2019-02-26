@@ -1,5 +1,7 @@
 <?php
 
+namespace PHPUnitDemo\Model;
+
 /**
  * Class SalaryDate
  */

@@ -1,5 +1,8 @@
 <?php
 
+namespace PHPUnitDemo\Services;
+
+use PHPUnitDemo\Model\SalaryDate;
 /**
  * Class SalaryDateService
  */
