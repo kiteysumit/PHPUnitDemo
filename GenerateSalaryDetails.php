@@ -2,8 +2,10 @@
 
 //namespace PHPUnitDemo;
 
+//use PHPUnitDemo\SalaryDetails;
+include_once "src/SalaryDetails.php";
+
 use PHPUnitDemo\SalaryDetails;
-//include_once "src/SalaryDetails.php";
 
 if (!isset($argv[1])) {
     printf("Please provide filename to write Salary Details\n");
@@ -12,6 +14,6 @@ if (!isset($argv[1])) {
 
 $filePath = $argv[1];
 
-$salaryDetails = new PHPUnitDemo\SalaryDetails();
+$salaryDetails = new SalaryDetails();
 
 $salaryDetails->prepareSalaryDetails($filePath);

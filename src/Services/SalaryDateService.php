@@ -3,6 +3,9 @@
 namespace PHPUnitDemo\Services;
 
 use PHPUnitDemo\Model\SalaryDate;
+
+include_once dirname(__FILE__) . "/../Model/SalaryDate.php";
+
 /**
  * Class SalaryDateService
  */
@@ -30,9 +33,9 @@ class SalaryDateService
      */
     public function getSalaryDate()
     {
-        $lastDateOfMonth = date('t', $this->getYearMonthCombination() . '15');
+        $lastDateOfMonth = date('t', strtotime($this->getYearMonthCombination() . '15'));
         $expectedSalaryDate = $this->getYearMonthCombination() . $lastDateOfMonth;
-        $lastDayOfMonth = date('D', $expectedSalaryDate);
+        $lastDayOfMonth = date('D', strtotime($expectedSalaryDate));
         if (!in_array($lastDayOfMonth, SalaryDate::WEEKENDS)) return $this->getFormattedDate($expectedSalaryDate);
         $threshold = ($lastDayOfMonth == SalaryDate::WEEKEND_SAT) ? 0 : 1;
         $expectedSalaryDate = $this->getYearMonthCombination() . ($lastDateOfMonth - $threshold - 1);
@@ -47,7 +50,7 @@ class SalaryDateService
     public function getBonusDate()
     {
         $expectedBonusDate = $this->getYearMonthCombination() . '15';
-        $expectedBonusDay = date('D', $expectedBonusDate);
+        $expectedBonusDay = date('D', strtotime($expectedBonusDate));
         if (!in_array($expectedBonusDay, SalaryDate::WEEKENDS)) return $this->getFormattedDate($expectedBonusDate);
         $threshold = ($expectedBonusDay == SalaryDate::WEEKEND_SAT) ? 1 : 0;
         $expectedBonusDate = $this->getYearMonthCombination() . (15 + $threshold + 3);
@@ -72,6 +75,6 @@ class SalaryDateService
      */
     protected function getFormattedDate(string $date)
     {
-        return $date('Y-m-d', strtotime($date));
+        return date('Y-m-d', strtotime($date));
     }
 }
